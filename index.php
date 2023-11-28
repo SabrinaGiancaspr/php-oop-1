@@ -75,9 +75,9 @@ $movies = [$emma_puzza, $rina_profuma];
             ?>
             <tr>
                 <th scope="row"><?php echo $i + 1 ?></th>
-                <td><?php echo $film->title ?></td>
-                <td><?php echo $film->language ?></td>
-                <td><?php echo $film->rating ?></td>
+                <td><?php echo $film->getTitle() ?></td>
+                <td><?php echo $film->getLanguage() ?></td>
+                <td><?php echo $film->getRating() ?></td>
             </tr>
             <?php
         }
