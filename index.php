@@ -27,7 +27,7 @@ class Production{
     
     public function setRating($rating){
         if(is_numeric($rating) && $rating >= 0 && $rating <= 10 ){
-            $this->rating = $rating;
+            $this->rating = floatval($rating);
         }else{
             $this->rating = null;
             var_dump('rating number is not valid');
@@ -38,8 +38,10 @@ class Production{
 // Creazione di un nuovo oggetto Production
 $emma_puzza = new Production("Emma puzza", "Italiano", 9.5);
 $rina_profuma = new Production("Rina", "Inglese", 10);
+$madame_milano= new Production("Madame", "Italiano", "10");
 
-$movies = [$emma_puzza, $rina_profuma];
+
+$movies = [$emma_puzza, $rina_profuma, $madame_milano];
 // Stampare le informazioni dell'oggetto
 // echo "Titolo: " . $emma_puzza->title . "<br>";
 // echo "Lingua: " . $emma_puzza->language . "<br>";
