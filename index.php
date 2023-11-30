@@ -1,6 +1,6 @@
 <?php
-require_once 'movie.php'; 
-require_once 'serie.php';
+require_once __DIR__ . '/Models/Movie.php'; 
+require_once __DIR__ . '/Models/Serie.php';
 ?>
 
 <!DOCTYPE html>

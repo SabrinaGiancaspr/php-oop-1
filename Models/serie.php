@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Production.php';
+require_once __DIR__ . '/Models/Production.php';
 
 class Serie extends Production {
     public $season;
