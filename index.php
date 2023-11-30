@@ -1,62 +1,6 @@
-<?php 
-//definizione della classe 
-class Production{
-    //dichiarazione variabili 
-    public $title;
-    public $language;
-    public $rating;
-
-    //costruttore
-    function __construct($new_title, $new_language, $new_rating)  {
-        $this->title = $new_title;
-        $this->language = $new_language;
-        $this->setRating($new_rating);
-    }
-
-    public function getTitle(){
-        return $this->title;
-          // Restituisce il titolo della produzione
-    }
-
-    public function getLanguage(){
-        return $this->language;
-        // Restituisce la lingua della produzione
-    }
-
-    public function getRating(){
-        return $this->rating;
-         // Restituisce il rating della produzione
-    }
-    
-    public function setRating($rating){
-        //controllo se rating è numerico e se è un numero tra 0 e 10
-        if(is_numeric($rating) && $rating >= 0 && $rating <= 10 ){
-
-            $this->rating = floatval($rating);
-        }else{
-            $this->rating = null;
-            var_dump('rating number is not valid');
-            // se il rating non è valido, imposta il rating a null e stampa un messaggio di avviso
-        }
-    }
-}
-
-// Creazione di un nuovo oggetto Production
-$emma_puzza = new Production("Emma puzza", "Italiano", 9.5);
-$rina_profuma = new Production("Rina", "Inglese", 10);
-$madame_milano= new Production("Madame", "Italiano", "10");
-
-//creo array movies
-$movies = [$emma_puzza, $rina_profuma, $madame_milano];
-// Stampare le informazioni dell'oggetto
-// echo "Titolo: " . $emma_puzza->title . "<br>";
-// echo "Lingua: " . $emma_puzza->language . "<br>";
-// echo "Rating: " . $emma_puzza->rating . "<br>";
-
-// Stampare le informazioni dell'oggetto
-// echo "Titolo: " . $rina_profuma->title . "<br>";
-// echo "Lingua: " . $rina_profuma->language . "<br>";
-// echo "Rating: " . $rina_profuma->rating . "<br>";
+<?php
+require_once 'movie.php'; 
+require_once 'serie.php';
 ?>
 
 <!DOCTYPE html>
@@ -68,30 +12,75 @@ $movies = [$emma_puzza, $rina_profuma, $madame_milano];
     <title>Document</title>
 </head>
 <body>
-<div class="container">
-    <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Films</th>
-            <th scope="col">Title</th>
-            <th scope="col">Language</th>
-            <th scope="col">Rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($movies as $i => $film){
-            ?>
-            <tr>
-                <th scope="row"><?php echo $i + 1 ?></th>
-                <td><?php echo $film->getTitle() ?></td>
-                <td><?php echo $film->getLanguage() ?></td>
-                <td><?php echo $film->getRating() ?></td>
-            </tr>
-            <?php
-        }
-        ?>
-    </tbody>
-    </table>
-</div>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Movies</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Profits</th>
+                    <th scope="col">Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $movies = [
+                    new Movie("Emma puzza", "Italiano", 9.5, 500000, 120),
+                    new Movie("Rina", "Inglese", 10, 750000, 105),
+                    new Movie("Madame", "Italiano", "10", 900000, 150)
+                ];
+
+                foreach ($movies as $i => $film) {
+                ?>
+                    <tr>
+                        <th scope="row"><?php echo $i + 1 ?></th>
+                        <td><?php echo $film->getTitle() ?></td>
+                        <td><?php echo $film->getLanguage() ?></td>
+                        <td><?php echo $film->getRating() ?></td>
+                        <td><?php echo $film->getProfit() ?> $</td>
+                        <td><?php echo $film->getDuration() ?> min</td>
+
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Series</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Seasons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                 $series = [
+                    new Serie("The Walking Dead", "Inglese", 7, 12),
+                    new Serie("How To Get Away With A Murderer", "Inglese", 10, 6),
+                    new Serie("Vis a Vis", "Spagnolo", 5, 4),
+                ];
+
+                foreach ($series as $i => $serie){
+                ?>
+                    <tr>
+                        <th scope="row"><?php echo $i + 1 ?></th>
+                        <td><?php echo $serie->getTitle()?></td>
+                        <td><?php echo $serie->getLanguage()?></td>
+                        <td><?php echo $serie->getRating()?></td>
+                        <td><?php echo $serie->getSeason()?></td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
